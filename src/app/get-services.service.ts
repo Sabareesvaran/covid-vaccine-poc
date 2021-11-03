@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { District, SessionData, state } from './app.component';
+import { District, pinData, SessionData, state } from './app.component';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -45,5 +45,12 @@ export class GetServicesService {
           return distResp.sessions;
         })
       );
+  }
+
+  findByPincode(pincode:string){
+    return this.http.get<{sessions:pinData[]}>('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode='+pincode+'&date=3-11-2021').pipe(map(responseData =>{
+      // console.log(responseData.sessions)
+      return responseData.sessions
+    }))
   }
 }
