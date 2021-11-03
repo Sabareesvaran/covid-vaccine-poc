@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GetServicesService } from './get-services.service';
-
+import { Component } from '@angular/core';
 
 
 export class state {
@@ -46,46 +44,6 @@ export class state {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit,OnDestroy{
+export class AppComponent{
   title = 'covid-demo';
-
-  stateId:string ='';
-  districtID:string = '';
-
-  StateListArray:state[] = []
-  DistrictListArray:District[] = []
-  SessionDataArray:SessionData[] = []
-
-  constructor(private getService:GetServicesService){
-
-  }
-
-  ngOnInit(){
-    this.getService.getState().subscribe(responseData=>{
-      this.StateListArray = responseData;
-    });
-  }
-  ngOnDestroy(){
-
-  }
-
-  getStates(){
-    this.getService.getState().subscribe(responseData=>{
-      this.StateListArray = responseData;
-    });
-  }
-
-
-  getDistricts(){
-    this.getService.getDistrict(this.stateId).subscribe(ResponseData =>{
-      this.DistrictListArray = ResponseData;
-    })
-  }
-
-  findByDistrict(){
-    this.getService.findByDistrict(this.districtID).subscribe(responseData =>{
-      this.SessionDataArray = responseData;
-    })
-  }
-
 }

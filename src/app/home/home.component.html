@@ -1,0 +1,41 @@
+
+<div class="container" >
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="input-group mb-3" style="margin-top: 20px;">
+        <label class="input-group-text" for="inputGroupSelect01">State</label>
+      <select style="margin-right: 10px;" class="form-select" [(ngModel)] ="stateId" (change) = "getDistricts()" >
+        <option value="" disabled selected >Select Your State..</option>
+        <option *ngFor = "let state of StateListArray" [value] = 'state.state_id' >{{state.state_name}}</option>
+      </select>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="input-group mb-3" style="margin-top: 20px;">
+        <label class="input-group-text" for="inputGroupSelect01">District</label>
+        <select class="form-select" [(ngModel)]= "districtID" (change) = "findByDistrict()" >
+          <option value="" disabled selected >Select Your District..</option>
+          <option *ngFor = "let district of DistrictListArray" [value] = 'district.district_id'>{{district.district_name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-3">
+      <ul class="list-group" *ngIf = "SessionDataArray.length >=1">
+        <li class="list-group-item" *ngFor = "let session of SessionDataArray">
+          <h4>{{session.name}}</h4>
+          <h5>{{session.date}}</h5>
+          <p>{{session.address}}</p>
+          <p>{{session.block_name}}</p>
+          <p>{{session.district_name}}</p>
+          <p>Available Capacity : {{session.available_capacity}}</p>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
